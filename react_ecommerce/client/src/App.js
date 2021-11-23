@@ -12,13 +12,16 @@ import LoginPage from "./pages/auth/LoginPage";
 import ForgotPasswordPage from "./pages/auth/ForgotPasswordPage";
 import RegisterComplete from "./pages/auth/RegisterComplete";
 
+// User Pages
 import UserPrivateRoute from "./components/routes/UserPrivateRoute";
 import Password from "./pages/user/Password";
 import Wishlist from "./pages/user/Wishlist";
 import History from "./pages/user/History";
 
-import AdminDashboard from "./pages/auth/admin/AdminDashboard";
-import AdminPrivateRoute from "./components/routes/AdminPrivateRotute";
+// Admin Pages
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminPrivateRoute from "./components/routes/AdminPrivateRoute";
+import CategoryCreate from './pages/admin/category/CategoryCreate'
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -70,6 +73,7 @@ const App = () => {
 				<UserPrivateRoute exact path="/user/password" comp={Password} />
 				<UserPrivateRoute exact path="/user/wishlist" comp={Wishlist} />
 				<AdminPrivateRoute exact path="/admin/dashboard" comp={AdminDashboard} />
+				<AdminPrivateRoute exact path="/admin/category" comp={CategoryCreate} />
 				<Route
 					exact
 					path="/register/complete"
