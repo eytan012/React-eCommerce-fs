@@ -39,7 +39,7 @@ exports.read = async (req, res) => {
 exports.update = async (req, res) => {
 	try {
 		const { slug } = req.params;
-		const { name } = req.body;
+		const {name:{name}} = req.body;
 		const slugUpdate = slugify(name).toLowerCase();
 		const updatedCategory = await Category.findOneAndUpdate(
 			{ slug },

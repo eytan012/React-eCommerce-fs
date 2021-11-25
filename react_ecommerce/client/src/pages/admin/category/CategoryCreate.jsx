@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import AdminSideNav from "../../../components/nav/AdminSideNav";
-import { Button, Divider } from "antd";
+import CategoryForm from "../../../components/forms/CategoryForm";
+import { Divider } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { toast } from "react-toastify";
 import {
@@ -56,26 +57,6 @@ const CategoryCreate = () => {
 		setLoading(false);
 	};
 
-	const AddCategoryForm = (
-		<div className="form-group">
-			<label htmlFor="name">Category Name</label>
-			<input
-				type="text"
-				className="form-control"
-				onChange={(e) => setName(e.target.value)}
-				value={name}
-			/>
-			<Button
-				disabled={name.length <= 3}
-				type="primary"
-				className="mt-3"
-				onClick={handleSubmit}
-			>
-				Add Category
-			</Button>
-		</div>
-	);
-
 	return (
 		<div className="container-fluid">
 			<div className="row">
@@ -88,7 +69,11 @@ const CategoryCreate = () => {
 					{loading ? (
 						<p className="text-primary">Loading...</p>
 					) : (
-						<>{AddCategoryForm}</>
+						<CategoryForm
+							name={name}
+							setName={setName}
+							handleSubmit={handleSubmit}
+						/>
 					)}
 					<h5 className="mt-3">Categories</h5>
 					<Divider />
@@ -99,15 +84,15 @@ const CategoryCreate = () => {
 									{c.name}
 									<span
 										className="btn btn-sm float-right text-danger"
-										onClick={()=>handleDelete(c.name)}
+										onClick={() => handleDelete(c.slug)}
 									>
 										<DeleteOutlined />
 									</span>
-									<span className="btn btn-sm float-right">
-										<Link to={`/admin/category/${c.name}`}>
+									<Link to={`/admin/category/${c.slug}`}>
+										<span className="btn btn-sm float-right">
 											<EditOutlined />
-										</Link>
-									</span>
+										</span>
+									</Link>
 								</div>
 							);
 						})}

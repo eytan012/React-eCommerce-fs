@@ -40,7 +40,7 @@ const LoginPage = ({ history }) => {
 				try {
 					const res = await createOrUpdateUser(token);
 					dispatch({
-						type: "LOGGEN_IN_USER",
+						type: "LOGGED_IN_USER",
 						payload: {
 							token: token,
 							email: res.data.email,
@@ -71,7 +71,7 @@ const LoginPage = ({ history }) => {
 				try {
 					const res = await createOrUpdateUser(token);
 					dispatch({
-						type: "LOGGEN_IN_USER",
+						type: "LOGGED_IN_USER",
 						payload: {
 							token: token,
 							email: res.data.email,

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Unauthorized from "./Unauthorized";
 import { currentAdmin } from "../../services/auth";
 
-const AdminPrivateRoute = ({ comp: Component, ...rest }) => {
+const AdminPrivateRoute = ({ comp: Component, ...rest}) => {
 	const [isAdmin, setIsAdmin] = useState(false);
 	const { user } = useSelector((state) => ({ ...state }));
 

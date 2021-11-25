@@ -22,6 +22,7 @@ import History from "./pages/user/History";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminPrivateRoute from "./components/routes/AdminPrivateRoute";
 import CategoryCreate from './pages/admin/category/CategoryCreate'
+import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -74,6 +75,7 @@ const App = () => {
 				<UserPrivateRoute exact path="/user/wishlist" comp={Wishlist} />
 				<AdminPrivateRoute exact path="/admin/dashboard" comp={AdminDashboard} />
 				<AdminPrivateRoute exact path="/admin/category" comp={CategoryCreate} />
+				<AdminPrivateRoute exact path="/admin/category/:slug" comp={CategoryUpdate} />
 				<Route
 					exact
 					path="/register/complete"
