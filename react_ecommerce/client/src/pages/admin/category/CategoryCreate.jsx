@@ -3,8 +3,13 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import AdminSideNav from "../../../components/nav/AdminSideNav";
 import CategoryForm from "../../../components/forms/CategoryForm";
-import { Divider } from "antd";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import InputSearch from '../../../components/forms/InputSearch'
+import { Divider, } from "antd";
+import {
+	DeleteOutlined,
+	EditOutlined,
+
+} from "@ant-design/icons";
 import { toast } from "react-toastify";
 import {
 	createCategory,
@@ -17,6 +22,7 @@ const CategoryCreate = () => {
 	const [name, setName] = useState("");
 	const [loading, setLoading] = useState(false);
 	const { user } = useSelector((state) => ({ ...state }));
+	const [search, setSearch] = useState("");
 
 	useEffect(() => {
 		loadCategories();
@@ -57,6 +63,10 @@ const CategoryCreate = () => {
 		setLoading(false);
 	};
 
+
+	const searched = (search) => (c) =>
+		c.name.toLowerCase().includes(search.toLowerCase());
+
 	return (
 		<div className="container-fluid">
 			<div className="row">
@@ -77,8 +87,9 @@ const CategoryCreate = () => {
 					)}
 					<h5 className="mt-3">Categories</h5>
 					<Divider />
+					<InputSearch search={search} setSearch={setSearch}/>
 					{categories.length > 0 &&
-						categories.map((c) => {
+						categories.filter(searched(search)).map((c) => {
 							return (
 								<div className="alert alert-secondary" key={c._id}>
 									{c.name}

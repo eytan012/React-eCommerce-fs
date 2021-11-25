@@ -6,7 +6,6 @@ require("dotenv").config();
 
 //APP
 const app = express();
-
 //MIDDLEWARES
 app.use(express.json());
 app.use(morgan("dev"));
@@ -20,6 +19,7 @@ app.get("/test", (req, res) => {
 app.use("/api/auth", require("./routes/auth")); //AUTH ROUTE
 app.use("/api/user", require("./routes/user")); // USER ROUTE
 app.use("/api", require("./routes/category")); //CATEGORY
+
 
 //DB
 const dbConnection = async () => {

@@ -23,6 +23,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminPrivateRoute from "./components/routes/AdminPrivateRoute";
 import CategoryCreate from './pages/admin/category/CategoryCreate'
 import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
+import SubCreate from "./pages/admin/subCategory/SubCreate";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -70,17 +71,14 @@ const App = () => {
 				<Route exact path="/login" component={LoginPage} />
 				<Route exact path="/register" component={RegisterPage} />
 				<Route exact path="/forgot-password" component={ForgotPasswordPage} />
+				<Route exact path="/register/complete" component={RegisterComplete}/>
 				<UserPrivateRoute exact path="/user/history" comp={History} />
 				<UserPrivateRoute exact path="/user/password" comp={Password} />
 				<UserPrivateRoute exact path="/user/wishlist" comp={Wishlist} />
 				<AdminPrivateRoute exact path="/admin/dashboard" comp={AdminDashboard} />
 				<AdminPrivateRoute exact path="/admin/category" comp={CategoryCreate} />
 				<AdminPrivateRoute exact path="/admin/category/:slug" comp={CategoryUpdate} />
-				<Route
-					exact
-					path="/register/complete"
-					component={RegisterComplete}
-				></Route>
+				<AdminPrivateRoute exact path="/admin/sub" comp={SubCreate} />
 			</Switch>
 		</>
 	);
