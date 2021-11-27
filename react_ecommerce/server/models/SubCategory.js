@@ -17,11 +17,8 @@ const subCatSchema = new mongoose.Schema(
 			lowercase: true,
 			index: true,
 		},
-        parent:{
-            type: ObjectId,
-            ref="Category",
-            required: "Parent is required"
-        }
+		parent: { type: ObjectId, ref: "Category", required: true },
+
 	},
 	{ timestamps: true }
 );

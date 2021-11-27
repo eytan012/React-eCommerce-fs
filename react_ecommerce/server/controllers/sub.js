@@ -3,10 +3,11 @@ const slugify = require("slugify");
 
 // create new category
 exports.create = async (req, res) => {
+	console.log(req.body);
 	try {
-		const { name } = req.body;
+		const { name,parent } = req.body;
 		const slug = slugify(name).toLowerCase();
-		const sub = await new Sub({ name, slug }).save();
+		const sub = await new Sub({ name, parent, slug }).save();
 		res.json(sub);
 	} catch (err) {
 		res.status(400).json({ err: "Create sub category failed" });
@@ -39,11 +40,11 @@ exports.read = async (req, res) => {
 exports.update = async (req, res) => {
 	try {
 		const { slug } = req.params;
-		const {name:{name}} = req.body;
+		const {name,parent} = req.body;
 		const slugUpdate = slugify(name).toLowerCase();
 		const updatedSub = await Sub.findOneAndUpdate(
 			{ slug },
-			{ name, slug: slugUpdate },
+			{ name,parent, slug: slugUpdate },
 			{ new: true }
 		).exec();
         res.json(updatedSub);

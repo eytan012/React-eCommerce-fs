@@ -30,7 +30,7 @@ const CategoryUpdate = () => {
 		setLoading(true);
 		try {
           const res = await updateCategory(slug, {name}, user.token)
-          console.log(res);
+		  toast.success(`Category "${res?.data?.name}" updated successfully`)
 		} catch (error) {
             console.log(error);
 			console.log(error?.response?.data?.err);

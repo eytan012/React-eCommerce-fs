@@ -1,15 +1,16 @@
 import axios from "axios";
 
+const api = "http://localhost:5000/api";
 export const getCategories = async () => {
-	return axios.get(`${process.env.REACT_APP_API}/categories`);
+	return axios.get(`${api}/categories`);
 };
 
 export const getCategory = async (slug) => {
-	return axios.get(`${process.env.REACT_APP_API}/category/${slug}`);
+	return axios.get(`${api}/category/${slug}`);
 };
 
 export const removeCategory = async (slug, authtoken) => {
-	await axios.delete(`${process.env.REACT_APP_API}/category/${slug}`, {
+	await axios.delete(`${api}/category/${slug}`, {
 		headers: {
 			authtoken,
 		},
@@ -18,7 +19,7 @@ export const removeCategory = async (slug, authtoken) => {
 
 export const updateCategory = async (slug, name, authtoken) => {
 	await axios.put(
-		`${process.env.REACT_APP_API}/category/${slug}`,
+		`${api}/category/${slug}`,
 		{ name },
 		{
 			headers: {
@@ -29,7 +30,7 @@ export const updateCategory = async (slug, name, authtoken) => {
 };
 
 export const createCategory = async (categoryName, authtoken) => {
-	return axios.post(`${process.env.REACT_APP_API}/category`, categoryName, {
+	return axios.post(`${api}/category`, categoryName, {
 		headers: {
 			authtoken,
 		},

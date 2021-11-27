@@ -1,15 +1,17 @@
 import axios from "axios";
 
+const api = "http://localhost:5000/api";
+
 export const getSubs = async () => {
-	return axios.get(`${process.env.REACT_APP_API}/subs`);
+	return axios.get(`${api}/subs`);
 };
 
 export const getSub = async (slug) => {
-	return axios.get(`${process.env.REACT_APP_API}/sub/${slug}`);
+	return axios.get(`${api}/subs/${slug}`);
 };
 
 export const removeSub = async (slug, authtoken) => {
-	await axios.delete(`${process.env.REACT_APP_API}/sub/${slug}`, {
+	await axios.delete(`${api}/subs/${slug}`, {
 		headers: {
 			authtoken,
 		},
@@ -17,20 +19,22 @@ export const removeSub = async (slug, authtoken) => {
 };
 
 export const updateSub = async (slug, sub, authtoken) => {
-	await axios.put(
-		`${process.env.REACT_APP_API}/sub/${slug}`,sub,
+return	await axios.put(`${api}/subs/${slug}`, sub, {
+		headers: {
+			authtoken,
+		},
+	});
+};
+
+export const createSub = async (name, category, authtoken) => {
+	const parent = category.parent;
+	return axios.post(
+		`${api}/subs`,
+		{ name, parent },
 		{
 			headers: {
 				authtoken,
 			},
 		}
 	);
-};
-
-export const createSub = async (sub, authtoken) => {
-	return axios.post(`${process.env.REACT_APP_API}/sub`, sub, {
-		headers: {
-			authtoken,
-		},
-	});
 };

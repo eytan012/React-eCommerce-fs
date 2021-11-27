@@ -32,7 +32,6 @@ const LoginPage = ({ history }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		setLoading(true);
 		try {
 			const { user } = await signInWithEmailAndPassword(auth, email, password);
 			if (user) {
@@ -58,7 +57,6 @@ const LoginPage = ({ history }) => {
 		} catch (error) {
 			console.log("fb error:", error);
 			toast.error(error.message);
-			setLoading(false);
 		}
 	};
 
@@ -111,6 +109,7 @@ const LoginPage = ({ history }) => {
 					type="password"
 					className="form-control"
 					placeholder="Enter Password"
+					autoComplete="on"
 					onChange={(e) => setPassword(e.target.value)}
 					value={password}
 				/>
@@ -124,7 +123,7 @@ const LoginPage = ({ history }) => {
 				className="mb-3"
 				disabled={!email || password.length < 6}
 			>
-				Login
+				Login 
 			</Button>
 			<Divider>OR</Divider>
 

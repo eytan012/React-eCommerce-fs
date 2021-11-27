@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
 import { currentUser } from "./services/auth";
+import {LOGGED_IN_USER} from './store/reducers/types'
 
 import Header from "./components/nav/Header";
 import HomePage from "./pages/HomePage";
@@ -24,6 +25,7 @@ import AdminPrivateRoute from "./components/routes/AdminPrivateRoute";
 import CategoryCreate from './pages/admin/category/CategoryCreate'
 import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
 import SubCreate from "./pages/admin/subCategory/SubCreate";
+import SubUpdate from "./pages/admin/subCategory/SubUpdate";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -40,7 +42,7 @@ const App = () => {
 				const res = await currentUser(token);
 				try {
 					dispatch({
-						type: "LOGGED_IN_USER",
+						type: LOGGED_IN_USER,
 						payload: {
 							name: res.data.name,
 							email: res.data.email,
@@ -79,6 +81,7 @@ const App = () => {
 				<AdminPrivateRoute exact path="/admin/category" comp={CategoryCreate} />
 				<AdminPrivateRoute exact path="/admin/category/:slug" comp={CategoryUpdate} />
 				<AdminPrivateRoute exact path="/admin/sub" comp={SubCreate} />
+				<AdminPrivateRoute exact path="/admin/sub/:slug" comp={SubUpdate} />
 			</Switch>
 		</>
 	);

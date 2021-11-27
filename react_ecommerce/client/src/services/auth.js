@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const api = process.env.REACT_APP_API;
+const api = "http://localhost:5000/api"
 export const createOrUpdateUser = async (authtoken) => {
   return await axios.post(
     `${api}/auth/create-or-update-user`,

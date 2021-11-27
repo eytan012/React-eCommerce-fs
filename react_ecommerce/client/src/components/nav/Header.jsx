@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {LOGOUT} from "../../store/reducers/types"
 import { useHistory } from "react-router-dom";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
@@ -27,7 +28,7 @@ const Header = () => {
 
 	const logout = () => {
 		signOut(auth);
-		dispatch({ type: "LOGOUT", payload: null });
+		dispatch({ type: LOGOUT, payload: null });
 		history.push("/login");
 	};
 

@@ -5,7 +5,7 @@ const CategoryForm = ({name,handleSubmit,setName}) => {
     return (
         <>
 		<div className="form-group">
-			<label htmlFor="name">Category Name</label>
+			<label htmlFor="name">Name</label>
 			<input
 				type="text"
 				className="form-control"
@@ -18,7 +18,7 @@ const CategoryForm = ({name,handleSubmit,setName}) => {
 				className="mt-3"
 				onClick={handleSubmit}
 			>
-				Add Category
+				Save
 			</Button>
 		</div>
         </>
