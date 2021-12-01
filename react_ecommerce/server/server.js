@@ -20,6 +20,8 @@ app.use("/api/auth", require("./routes/auth")); //AUTH ROUTE
 app.use("/api/user", require("./routes/user")); // USER ROUTE
 app.use("/api", require("./routes/category")); //CATEGORY
 app.use("/api/subs", require("./routes/subCategory")); //SUBS
+app.use("/api/product", require("./routes/product")); // PRODUCTS
+app.use("/api/products", require("./routes/product")); 
 
 
 //DB
