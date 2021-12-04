@@ -4,7 +4,7 @@ const router = require("express").Router();
 const { authCheck, isAdmin } = require("../middlewares/auth");
 
 //controller
-const {list,create,read,update,remove} = require("../controllers/category");
+const {list,create,read,update,remove,getSubs} = require("../controllers/category");
 
 // @routes 
 
@@ -16,6 +16,7 @@ router.get("/category/:slug", read); //read category public route
 router.post("/category", authCheck, isAdmin, create); //create category if admin
 router.put("/category/:slug", authCheck, isAdmin, update); //update category if admin
 router.delete("/category/:slug", authCheck, isAdmin, remove); //remove category if admin
+router.get("/category/subs/:_id",getSubs); //get subs of category
 
 
 module.exports = router;

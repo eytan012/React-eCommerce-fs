@@ -3,10 +3,11 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import AdminSideNav from "../../../components/nav/AdminSideNav";
 import ProductForm from "../../../components/forms/ProductForm";
+import FileUpload from "../../../components/forms/FileUpload";
+import { createProduct } from "../../../services/product";
+import { getCategories, getCategorySubs } from "../../../services/categories";
 import { Divider } from "antd";
 import { toast } from "react-toastify";
-import { createProduct } from "../../../services/product";
-import { getCategories } from "../../../services/categories";
 
 const initialValues = {
 	title: "",
@@ -52,17 +53,19 @@ const initialValues = {
 
 const ProductCreate = () => {
 	const [values, setValues] = useState(initialValues);
+	const [subOptions, setSubOptions] = useState([]);
 	const [categories, setCategories] = useState([]);
+	const [loading, setLoading] = useState(false);
 	const { token } = useSelector((state) => state.user);
 	const history = useHistory();
 
 	useEffect(() => {
 		loadCategories();
 	}, []);
-	
+
 	const loadCategories = async () => {
 		const { data } = await getCategories();
-		setValues({...values, categories: data});
+		setValues({ ...values, categories: data });
 	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -79,6 +82,17 @@ const ProductCreate = () => {
 		setValues({ ...values, [e.target.name]: e.target.value });
 	};
 
+	const handleCategoryChange = async (e) => {
+		e.preventDefault();
+		if (e.target.value === "Please Select") {
+			setSubOptions([]);
+			return;
+		}
+		setValues({ ...values, subs: [], category: e.target.value });
+		const { data } = await getCategorySubs(e.target.value);
+		setSubOptions(data);
+	};
+
 	return (
 		<div className="container-fluid">
 			<div className="row">
@@ -88,10 +102,21 @@ const ProductCreate = () => {
 				<div className="col-md-6">
 					<h5 className="mt-3">Create Product</h5>
 					<Divider />
+					<div className="p-3">
+						<FileUpload
+							values={values}
+							setValues={setValues}
+							setLoading={setLoading}
+							loading={loading}
+						/>
+					</div>
 					<ProductForm
 						handleChange={handleChange}
 						handleSubmit={handleSubmit}
+						handleCategoryChange={handleCategoryChange}
 						values={values}
+						subOptions={subOptions}
+						setValues={setValues}
 					/>
 				</div>
 			</div>

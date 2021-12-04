@@ -4,11 +4,11 @@ const router = require("express").Router();
 const { authCheck, isAdmin } = require("../middlewares/auth");
 
 //controller
-const {create,read} = require("../controllers/product");
+const {create,listAll} = require("../controllers/product");
 
 // @routes
 router.post("/", authCheck, isAdmin, create);
-router.get("/products",read);
+router.get("/:count",listAll);
 
 
 

@@ -7,7 +7,7 @@ require("dotenv").config();
 //APP
 const app = express();
 //MIDDLEWARES
-app.use(express.json());
+app.use(express.json({limit:'50mb'}));
 app.use(morgan("dev"));
 app.use(cors());
 
@@ -22,6 +22,7 @@ app.use("/api", require("./routes/category")); //CATEGORY
 app.use("/api/subs", require("./routes/subCategory")); //SUBS
 app.use("/api/product", require("./routes/product")); // PRODUCTS
 app.use("/api/products", require("./routes/product")); 
+app.use("/api/cloudinary",require("./routes/cloudinary"))// images upload
 
 
 //DB
