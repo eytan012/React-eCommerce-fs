@@ -13,17 +13,44 @@ exports.create = async (req, res) => {
 		});
 	}
 };
-
-exports.listAll = async (req, res) => {
+exports.read = async (req, res) => {
+	const slug = req.params.slug;
 	try {
-		const products = await Product.find({})
-			.limit(parseInt(req.params.count))
+		const product = await Product.findOne({ slug })
 			.populate("category")
 			.populate("subs")
 			.exec();
-		res.json(products);
+		res.status(200).json({ product });
 	} catch (error) {
 		console.log(error);
+		res.status(400).json({
+			error: error.message,
+		});
+	}
+};
+exports.remove = async (req, res) => {
+	const slug = req.params.slug;
+	try {
+		const deleted = await Product.findOneAndRemove({ slug }).exec();
+		res.status(200).json(deleted);
+	} catch (error) {
+		console.log(error);
+		res.status(400).json({
+			error: error.message,
+		});
+	}
+};
+
+exports.update = async (req, res) => {
+	const slug = req.params.slug;
+	try {
+		if (req.body.title) req.body.slug = slugify(req.body.title);
+		const updated = await Product.findOneAndUpdate({ slug: slug }, req.body, {
+			new: true,
+		}).exec();
+		res.status(200).json(updated);
+	} catch (error) {
+		console.log("update error: ", error);
 		res.status(400).json({
 			error: error.message,
 		});

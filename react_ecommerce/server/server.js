@@ -7,7 +7,7 @@ require("dotenv").config();
 //APP
 const app = express();
 //MIDDLEWARES
-app.use(express.json({limit:'50mb'}));
+app.use(express.json({ limit: "50mb" }));
 app.use(morgan("dev"));
 app.use(cors());
 
@@ -16,14 +16,16 @@ app.use(cors());
 app.get("/test", (req, res) => {
 	res.send("TEST ROUTE");
 });
+
+
+ 
 app.use("/api/auth", require("./routes/auth")); //AUTH ROUTE
 app.use("/api/user", require("./routes/user")); // USER ROUTE
 app.use("/api", require("./routes/category")); //CATEGORY
 app.use("/api/subs", require("./routes/subCategory")); //SUBS
 app.use("/api/product", require("./routes/product")); // PRODUCTS
-app.use("/api/products", require("./routes/product")); 
-app.use("/api/cloudinary",require("./routes/cloudinary"))// images upload
-
+app.use("/api/products", require("./routes/products"));
+app.use("/api/cloudinary", require("./routes/cloudinary")); // images upload
 
 //DB
 const dbConnection = async () => {

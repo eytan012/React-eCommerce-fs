@@ -4,12 +4,12 @@ const router = require("express").Router();
 const { authCheck, isAdmin } = require("../middlewares/auth");
 
 //controller
-const {create,listAll} = require("../controllers/product");
+const { create, remove, read ,update} = require("../controllers/product");
 
 // @routes
 router.post("/", authCheck, isAdmin, create);
-router.get("/:count",listAll);
-
-
+router.get("/:slug", read);
+router.delete("/:slug", authCheck, isAdmin, remove);
+router.put("/:slug", authCheck, isAdmin, update);
 
 module.exports = router;

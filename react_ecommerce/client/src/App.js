@@ -27,6 +27,8 @@ import CategoryUpdate from "./pages/admin/category/CategoryUpdate";
 import SubCreate from "./pages/admin/subCategory/SubCreate";
 import SubUpdate from "./pages/admin/subCategory/SubUpdate";
 import ProductCreate from "./pages/admin/product/ProductCreate";
+import AllProducts from "./pages/admin/product/AllProducts";
+import ProductUpdate from "./pages/admin/product/ProductUpdate";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -83,6 +85,8 @@ const App = () => {
 				<AdminPrivateRoute exact path="/admin/category/:slug" comp={CategoryUpdate} />
 				<AdminPrivateRoute exact path="/admin/sub" comp={SubCreate} />
 				<AdminPrivateRoute exact path="/admin/sub/:slug" comp={SubUpdate} />
+				<AdminPrivateRoute exact path="/admin/products" comp={AllProducts} />
+				<AdminPrivateRoute exact path="/admin/product/:slug" comp={ProductUpdate} />
 				<AdminPrivateRoute exact path="/admin/product" comp={ProductCreate} />
 
 			</Switch>

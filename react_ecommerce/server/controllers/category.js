@@ -67,14 +67,13 @@ exports.remove = async (req, res) => {
 };
 
 exports.getSubs = async (req, res) => {
-	
 	try{
-		// const test = await Sub.find({}).exec()
-		// console.log(test);
+		console.log(req.params);
 		const subs = await Sub.find({parent:req.params._id}).exec();
-		res.json(subs);
+		console.log("subs: ",subs);
+		 res.json(subs);
 	} catch (err) {
-		res.status(400).json({ err: "Get sub category failed" });
 		console.log(error);
+		res.status(400).json({ err: "Get sub category failed" });
 	}
 };

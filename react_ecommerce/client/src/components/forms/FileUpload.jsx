@@ -86,6 +86,7 @@ const FileUpload = ({ values, setValues, setLoading, loading }) => {
 								return (
 									<Badge
 										onClick={() => handleRemove(img.public_id)}
+										key={img.public_id}
 										count="X"
 										style={{ cursor: "pointer" }}
 									>
